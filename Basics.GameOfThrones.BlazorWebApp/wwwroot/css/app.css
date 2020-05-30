@@ -1,0 +1,8 @@
+﻿@import url('w3.css');
+
+
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}

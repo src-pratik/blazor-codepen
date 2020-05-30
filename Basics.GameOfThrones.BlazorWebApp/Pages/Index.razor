@@ -1,0 +1,84 @@
+﻿@page "/"
+@inject HttpClient HttpClient
+@using Basics.GameOfThrones.Domain.Entities;
+
+
+<div class="w3-row-padding">
+    <div class="w3-col w3-center">
+        <h1>Game Of Thrones </h1>
+    </div>
+</div>
+
+<div class="w3-row-padding">
+    <div class="w3-col m4">
+        <div class="w3-panel">
+            <h2>Noble Houses</h2>
+        </div>
+    </div>
+</div>
+
+<div class="w3-row-padding">
+    <div class="w3-col m3">
+        <select class="w3-select w3-border" id="houses" @bind="_selectedHouse">
+            <option>---Select House---</option>
+
+            @foreach (var house in Houses)
+            {
+                <option value="@house.Id">@house.Name</option>
+            }
+
+        </select>
+    </div>
+    <div class="w3-col m1 w3-left ">
+        <button class="w3-button w3-black w3-round-xxlarge" @onclick="HandleGet">Get Details</button>
+    </div>
+</div>
+<br />
+@if (House != null)
+{
+    <div class="w3-card-4">
+
+        <header class="w3-container">
+            <h1>@House.Name</h1>
+        </header>
+
+        <div class="w3-container">
+            <div class="w3-row-padding">
+                <div class="w3-col m2 ">
+                    <img src="data:image/jpeg;base64,@House.Banner" style="max-width:100%;padding:10px;" alt="Banner" />
+                </div>
+                <div class="w3-col m10" style="padding:10px;">
+                    @House.Information
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+
+@code{
+
+    private string _selectedHouse;
+
+    private House[] Houses = new House[] { };
+    private House House;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Houses = await HttpClient.GetFromJsonAsync<House[]>("house");
+    }
+
+
+    private async Task HandleGet()
+    {
+        long houseid;
+
+        if (long.TryParse(_selectedHouse, out houseid) == false)
+        {
+            return;
+        }
+
+        House = await HttpClient.GetFromJsonAsync<House>($"house/{houseid}");
+    }
+}
