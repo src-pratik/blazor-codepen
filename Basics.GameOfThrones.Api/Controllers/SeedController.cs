@@ -27,10 +27,12 @@ namespace Basics.GameOfThrones.Api.Controllers
         public async Task<IActionResult> GetAsync()
         {
             _context.Database.EnsureCreated();
-            await _context.Houses.AddRangeAsync(SeedData.Houses);
+
+            if (_context.Houses.Any() == false)
+                await _context.Houses.AddRangeAsync(SeedData.Houses);
+
             await _context.SaveChangesAsync();
             return Ok();
-
         }
     }
 }

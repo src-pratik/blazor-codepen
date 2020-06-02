@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+
 namespace Basics.GameOfThrones.BlazorWebApp
 {
     public class Program
@@ -15,11 +16,14 @@ namespace Basics.GameOfThrones.BlazorWebApp
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+            var apiUrl = builder.Configuration["ApiUrl"];
+
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddTransient(sp => new HttpClient
             {
-                BaseAddress = new Uri("http://localhost:5010/api/")
+                BaseAddress = new Uri(apiUrl)
             });
 
             await builder.Build().RunAsync();

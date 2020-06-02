@@ -20,7 +20,10 @@ namespace Basics.GameOfThrones.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    //Specifically used for container
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    webBuilder.UseStartup<Startup>()
+                    .UseUrls("http://*:" + port); ;
                 });
     }
 }

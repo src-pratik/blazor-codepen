@@ -5,6 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="GameOfThrones.db" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />

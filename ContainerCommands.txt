@@ -1,0 +1,2 @@
+docker build --pull -t gameofthroneswebapp -f Dockerfile.BlazorWebApp .
+docker run --rm -it -p 8000:80 --name webapp gameofthroneswebapp

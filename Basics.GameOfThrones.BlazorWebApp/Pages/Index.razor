@@ -1,7 +1,11 @@
 ﻿@page "/"
-@inject HttpClient HttpClient
 @using Basics.GameOfThrones.Domain.Entities;
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
 
+@inject HttpClient HttpClient
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
+@*<p>Environment: @HostEnvironment.Environment</p>*@
 
 <div class="w3-row-padding">
     <div class="w3-col w3-center">

@@ -1,0 +1,11 @@
+# Specify the image that will be used
+# This will be pulled from Docker Image Registry
+FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.1-alpine
+
+# Set the working directory in the image
+WORKDIR /app
+
+# Copy the publish application to the workdir in image
+COPY /publish/webapi ./
+
+ENTRYPOINT ["./Basics.GameOfThrones.Api"]
