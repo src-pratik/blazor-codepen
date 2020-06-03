@@ -7,7 +7,7 @@ The sample use case, is the application lists all the Noble Houses in a dropdown
 For use case, an simple HTTP REST API has been created which serves as an data provider to the client application.
 
 
-![](screengrab.gif)
+![](./readmeimages/screengrab.gif)
 
 
 ## Working
@@ -211,7 +211,7 @@ Before making the docker images, publish both projects with the publish profiles
 
 To run the applications in containers, Alpine Linux images are used. There would be two seperate images for the BlazorWebApp & Api
 
-![](./images/dockerimages.png)
+![](./readmeimages/dockerimages.png)
 
 
 ### BlazorWebApp
